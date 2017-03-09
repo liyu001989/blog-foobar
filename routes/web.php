@@ -17,13 +17,15 @@ Route::get('/', function () {
 
 
 Route::group(['middleware' => 'auth'], function() {
-
-    Route::resource('posts', 'PostController', ['except' => ['index', 'show']]);
-    //Route::get('user', 'UserController@userShow')->name('user.info');
+    Route::get('user', 'UserController@userShow')->name('user.info');
+    Route::post('user/avatar', 'UserController@updateAvatar')->name('user.avatar');
 });
 
-Route::get('posts', 'PostController@index')->name('posts.index');
-Route::get('posts/{id}', 'PostController@show')->name('posts.show');
+
+Route::resource('posts', 'PostController');
+Route::resource('posts.comments', 'CommentController', ['only' => [
+    'store', 'update', 'destroy', 'edit'
+]]);
 
 
 Auth::routes();

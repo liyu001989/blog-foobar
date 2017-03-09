@@ -12,6 +12,13 @@
                         {{ method_field('PUT') }}
                         <div>title: <input required type="text" name="title" value="{{ $post->title }}"></div>
                         <div>content: <textarea required name="content">{{ $post->content }}</textarea></div>
+                        <div>
+                            <select name="tag_id">
+                                @foreach($tags as $tag)
+                                    <option value="{{ $tag->id }}" @if($post->tag->id == $tag->id) selected @endif>{{ $tag->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <button type="submit">提交</button>
                     </form>
                 </div>

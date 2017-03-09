@@ -18,6 +18,7 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->text('content');
             $table->integer('user_id')->unsigned()->index();
+            $table->integer('tag_id')->unsigned()->index();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -11,7 +11,15 @@
                         {{ csrf_field() }}
                         <div><input name="title"></div>
                         <textarea name="content"></textarea>
+                        <div>
+                            <select name="tag_id">
+                                @foreach($tags as $tag)
+                                    <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <button type="submit">提交</button>
+
                     </form>
                 </div>
             </div>

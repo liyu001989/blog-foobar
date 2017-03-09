@@ -10,11 +10,18 @@
                     @foreach($posts as $post)
                         <div>title: {{ $post->title }}</div>
                         <div>content: {{ $post->content }}</div>
-                        <div>user {{ $post->user->id }}</div>
+                        <div>user: {{ $post->user->name }}</div>
+                        <div>分类: {{ $post->tag->name }}</div>
+                        <div>头像:
+                            @if ($post->user->avatar)
+                                <img width="50px" height="50px" src="{{ $post->user->avatar }}">
+                            @endif
+                        </div>
 
                         <a href="{{ route('posts.show', $post->id) }}" class="pull-right">查看</a>
                         <hr>
                     @endforeach
+                    {{ $posts->links() }}
                 </div>
             </div>
         </div>
