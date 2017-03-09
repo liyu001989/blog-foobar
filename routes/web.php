@@ -14,3 +14,18 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::group(['middleware' => 'auth'], function() {
+
+    Route::resource('posts', 'PostController', ['except' => ['index', 'show']]);
+    //Route::get('user', 'UserController@userShow')->name('user.info');
+});
+
+Route::get('posts', 'PostController@index')->name('posts.index');
+Route::get('posts/{id}', 'PostController@show')->name('posts.show');
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
