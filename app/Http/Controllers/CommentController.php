@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Comment;
 use App\Models\Post;
+use App\Models\Notification;
 
 class CommentController extends Controller
 {
@@ -23,6 +24,12 @@ class CommentController extends Controller
         $comment->user()->associate($user);
         $comment->post()->associate($post);
         $comment->save();
+
+        $notification = new Notification;
+        $notification->post_id = $post->id;
+        $notification->user_id = $post->user->id;
+        $notification->content = '有用户评论了您';
+        $notification->save();
 
         return redirect(route('posts.show', $post->id));
     }

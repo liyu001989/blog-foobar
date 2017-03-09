@@ -19,6 +19,7 @@ Route::get('/', function () {
 Route::group(['middleware' => 'auth'], function() {
     Route::get('user', 'UserController@userShow')->name('user.info');
     Route::post('user/avatar', 'UserController@updateAvatar')->name('user.avatar');
+    Route::get('notifications', 'Notification@index')->name('notifications.index');
 });
 
 
