@@ -8,10 +8,9 @@ class Notification extends Controller
 {
     public function index(Request $request)
     {
-        dd('没做完')
         $user = $request->user();
-        //$notifications = $user->notifications;
+        $notifications = $user->notifications;
 
-        return view('notificaion.index');
+        return view('notification.index', compact('notifications'));
     }
 }
