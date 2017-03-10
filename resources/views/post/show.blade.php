@@ -36,7 +36,7 @@
                             <div>评论：{{ $comment->content }}</div>
                             <div class="pull-right">{{ $comment->created_at }}</div>
 
-                            @if ($user && $user->id == $post->user_id)
+                            @if ($user && $user->id == $comment->user_id)
                                 <a onclick="event.preventDefault();document.getElementById('comment-delete-form').submit();">删除</a>
                             @endif
                             <hr>
